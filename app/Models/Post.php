@@ -18,13 +18,14 @@ class Post extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->changeTest();
     }
 
-    public $test;
+    public function category() {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 
-    public function changeTest() {
-        $this->test = "changed";
+    public function tags() {
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
     }
 
 }

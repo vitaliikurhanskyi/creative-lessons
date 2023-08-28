@@ -19,11 +19,19 @@ Route::get('/', function () {
 
 Route::get('/test', 'MyPlaceController@index');
 
-Route::get('/posts', 'PostController@index');
+Route::get('/posts', 'PostController@index')->name('post.index');
 
-Route::get('/posts/create', 'PostController@create');
+Route::get('/posts/create', 'PostController@create')->name('post.create');
 
-Route::get('/posts/update', 'PostController@update');
+Route::post('/posts', 'PostController@store')->name('post.store');
+
+Route::get('/posts/{post}', 'PostController@show')->name('post.show');
+
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('post.edit');
+
+Route::patch('/posts/{post}', 'PostController@update')->name('post.update');
+
+Route::delete('/posts/{post}', 'PostController@destroy')->name('post.destroy');
 
 Route::get('/posts/delete', 'PostController@delete');
 
@@ -32,3 +40,5 @@ Route::get('/posts/restore', 'PostController@restore');
 Route::get('/posts/first_or_create', 'PostController@firstOrCreate');
 
 Route::get('/posts/update_or_create', 'PostController@updateOrCreate');
+
+Route::get('/about', 'AboutController@index')->name('about.index');
