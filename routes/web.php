@@ -42,3 +42,5 @@ Route::get('/posts/first_or_create', 'PostController@firstOrCreate');
 Route::get('/posts/update_or_create', 'PostController@updateOrCreate');
 
 Route::get('/about', 'AboutController@index')->name('about.index');
+
+Route::get('/articles', 'ArticleController@index')->name('article.index');
