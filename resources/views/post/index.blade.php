@@ -5,13 +5,18 @@
 
     <article>
         <a href="{{ route('post.show', $post->id) }}">
-            <h2>{{$post->title}}</h2>
+            <h2>{{ $post->id }} - {{$post->title}}</h2>
         </a>
     </article>
 
     @if (!$loop->last)
         <hr>
     @endif
+
 @endforeach
+
+<div class="mt-4">{{ $posts->withQueryString()->links() }}</div>
+
+
 @endsection
 

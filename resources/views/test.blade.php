@@ -12,9 +12,10 @@
     <div class="container">
         <div class="row">
             <div class="alert alert-success mt-5" role="alert">
-                Laravel курс с нуля, база. 21. CRUD через интерфейс - модифицируем интерфейс часть 4 is finish
+                Laravel курс с нуля, база. 30. Шаблон Filter, фильтрация данных в Laravel is finish
             </div>
             <a href="{{ route('post.index') }}" class="btn btn-info mt-5">To Posts</a>
+            <a href="{{ route('article.index') }}" class="btn btn-info mt-5">To Articles</a>
         </div>
     </div>
 </body>
