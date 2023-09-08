@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="alert alert-success mt-5" role="alert">
-                Laravel курс с нуля, база. 31. Admin LTE в Laravel, устанавливаем админку || 18:00
+                Laravel курс с нуля, база. 31. Admin LTE в Laravel, устанавливаем админку is finish
             </div>
             <a href="{{ route('post.index') }}" class="btn btn-info mt-5">To Posts</a>
             <a href="{{ route('article.index') }}" class="btn btn-info mt-5">To Articles</a>

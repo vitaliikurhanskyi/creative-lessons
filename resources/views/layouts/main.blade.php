@@ -12,10 +12,20 @@
 <div class="container">
     <br>
     <div class="row">
+        <div class="alert alert-success" role="alert">
+            Laravel курс с нуля, база. 34. Класс Policy в Laravel is finish
+        </div>
+    </div>
+    <br>
+    <div class="row">
         <nav class="nav">
             <a class="nav-link" href="{{ route('post.index') }}">Posts</a>
             <a class="nav-link" href="{{ route('post.create') }}">Create the post</a>
             <a class="nav-link" href="{{ route('about.index') }}">About</a>
+
+            @can('view', auth()->user())
+                <a class="nav-link" href="{{ route('admin.post.index') }}">Admin Menu</a>
+            @endcan
         </nav>
     </div>
     <br>
