@@ -40,7 +40,7 @@ Route::group(['namespace' => 'Product'], function() {
     Route::post('/products', 'ProductController@store')->name('products.store');
     Route::get('/products/{post}', 'ProductController@show')->name('products.show');
     Route::get('/products/{post}/edit', 'ProductController@edit')->name('products.edit');
-    Route::patch('/products/{post}', 'ProductController@update')->name('products.update');
+    Route::patch('/products/{product}', 'ProductController@update')->name('products.update');
     Route::delete('/products/{post}', 'ProductController@destroy')->name('products.destroy');
     Route::get('/products/delete', 'ProductController@delete');
 });

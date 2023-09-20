@@ -4,13 +4,24 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Filters\ProductFilter;
+use App\Http\Requests\Product\UpdateRequest;
 use App\Http\Requests\Product\FilterRequest;
 use App\Http\Resources\Product\ProductResource;
+use App\Servises\Product\ProductService;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
+
 class ProductController extends Controller
 {
+
+    public $service;
+
+    public function __construct(ProductService $post_service)
+    {
+        $this->service = $post_service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +37,12 @@ class ProductController extends Controller
 //          "price" => 20
 //        ];
         //dd($data);
+
+        $page = $data['page'] ?? 1;
+        $per_page = $data['per_page'] ?? 10;
+
         $filter = app()->make(ProductFilter::class, ['queryParams' => array_filter($data)]);
-        $products = Product::filter($filter)->paginate(10);
+        $products = Product::filter($filter)->paginate($per_page, ['*'], 'page', $page);
         return ProductResource::collection($products);
     }
 
@@ -86,11 +101,17 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return ProductResource
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Product $product)
     {
-        //
+        $data = $request->validated();
+        $product = $this->service->update($product, $data);
+
+        return new ProductResource($product);
+
+        //return $data;
+        //return redirect()->route('post.show', $post->id);
     }
 
     /**
