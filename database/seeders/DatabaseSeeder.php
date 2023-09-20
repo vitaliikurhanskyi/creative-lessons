@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
@@ -25,5 +26,7 @@ class DatabaseSeeder extends Seeder
             $post->tags()->attach($tagsId);
         }
         // \App\Models\User::factory(10)->create();
+
+        Product::factory(100)->create();
     }
 }

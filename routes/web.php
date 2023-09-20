@@ -34,6 +34,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     });
 });
 
+Route::group(['namespace' => 'Product'], function() {
+    Route::get('/products', 'ProductController@index')->name('products.index');
+    Route::get('/products/create', 'ProductController@create')->name('products.create');
+    Route::post('/products', 'ProductController@store')->name('products.store');
+    Route::get('/products/{post}', 'ProductController@show')->name('products.show');
+    Route::get('/products/{post}/edit', 'ProductController@edit')->name('products.edit');
+    Route::patch('/products/{post}', 'ProductController@update')->name('products.update');
+    Route::delete('/products/{post}', 'ProductController@destroy')->name('products.destroy');
+    Route::get('/products/delete', 'ProductController@delete');
+});
+
 //Route::get('/posts', 'PostController@index')->name('post.index');
 //Route::get('/posts/create', 'PostController@create')->name('post.create');
 //Route::post('/posts', 'PostController@store')->name('post.store');
