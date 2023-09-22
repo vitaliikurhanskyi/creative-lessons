@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/test', 'MyPlaceController@index');
 
+
 Route::group(['namespace' => 'Post'], function() {
     Route::get('/posts', 'IndexController')->name('post.index');
     Route::get('/posts/create', 'CreateController')->name('post.create');
@@ -28,13 +30,15 @@ Route::group(['namespace' => 'Post'], function() {
     Route::get('/posts/delete', 'DestroyController');
 });
 
+
+
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::group(['namespace' => 'Post'], function() {
         Route::get('/post', 'IndexController')->name('admin.post.index');
     });
 });
 
-Route::group(['namespace' => 'Product'], function() {
+Route::group(['namespace' => 'Product', 'prefix' => 'admin', 'middleware' => 'auth:api'], function() {
     Route::get('/products', 'ProductController@index')->name('products.index');
     Route::get('/products/create', 'ProductController@create')->name('products.create');
     Route::post('/products', 'ProductController@store')->name('products.store');
@@ -44,6 +48,8 @@ Route::group(['namespace' => 'Product'], function() {
     Route::delete('/products/{post}', 'ProductController@destroy')->name('products.destroy');
     Route::get('/products/delete', 'ProductController@delete');
 });
+
+
 
 //Route::get('/posts', 'PostController@index')->name('post.index');
 //Route::get('/posts/create', 'PostController@create')->name('post.create');

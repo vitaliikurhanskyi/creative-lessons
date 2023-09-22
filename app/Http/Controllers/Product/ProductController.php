@@ -32,6 +32,9 @@ class ProductController extends Controller
 //        $products = Product::paginate(10);
 //        return ProductResource::collection($products);
 
+        $product = Product::find(9);
+        dd($product->ptags);
+
         $data = $request->validated();
 //        $data = [
 //          "price" => 20

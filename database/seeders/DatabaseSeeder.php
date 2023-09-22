@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Product;
+use App\Models\Ptag;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         $category = Category::factory(7)->create();
         $tags = Tag::factory(20)->create();
+        $ptags = Ptag::factory(20)->create();
         $posts= Post::factory(100)->create();
 
         foreach ($posts as $post) {
@@ -27,6 +29,11 @@ class DatabaseSeeder extends Seeder
         }
         // \App\Models\User::factory(10)->create();
 
-        Product::factory(100)->create();
+        $products = Product::factory(100)->create();
+
+        foreach ($products as $product) {
+            $ptagsId = $ptags->random(2)->pluck('id');
+            $product->ptags()->attach($ptagsId);
+        }
     }
 }

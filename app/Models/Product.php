@@ -16,4 +16,8 @@ class Product extends Model
 
     protected $guarded = [];
 
+    public function ptags() {
+        return $this->belongsToMany(Ptag::class, 'product_ptags', 'product_id', 'ptag_id');
+    }
+
 }
